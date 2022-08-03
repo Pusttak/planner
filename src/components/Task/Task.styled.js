@@ -6,7 +6,9 @@ export const Item = styled.div`
   align-items: center;
   border-radius: 6px;
   min-height: 35px;
-  background-color: ${props => (props.isDragging ? 'green' : '#225588')};
+  background-color: ${props => (props.isDragging ? '#f28c4c' : '#f03086')};
+  transform: scale(${props => (props.isDragging ? '1.03' : '1')});
+  transition: all 0.3s ease;
 `;
 
 export const Content = styled.h4`

@@ -1,14 +1,13 @@
 import { useReducer } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import shortid from 'shortid';
 import stateReducer from 'reducers/stateReducer';
-import Board from 'Board';
+import Board from 'components/Board';
 import { data } from 'data';
 import { Container } from './App.styled';
 
-const init = data;
-
 const App = () => {
-  const [state, dispatch] = useReducer(stateReducer, init);
+  const [state, dispatch] = useReducer(stateReducer, data);
 
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
@@ -67,6 +66,23 @@ const App = () => {
     });
   };
 
+  const isAddTask = (boardId, content) => {
+    dispatch({
+      type: 'task/addTask',
+      payload: {
+        boardId,
+        task: { id: shortid.generate(), content },
+      },
+    });
+  };
+
+  const isDeleteTask = (boardId, taskId) => {
+    dispatch({
+      type: 'task/deleteTask',
+      payload: { boardId, taskId },
+    });
+  };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="all-boards" direction="horisontal" type="border">
@@ -81,6 +97,8 @@ const App = () => {
                   board={board}
                   tasks={tasks}
                   index={index}
+                  isAddTask={isAddTask}
+                  isDeleteTask={isDeleteTask}
                 />
               );
             })}

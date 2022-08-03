@@ -1,13 +1,15 @@
 const stateReducer = (state, action) => {
+  const { payload } = action;
+
   switch (action.type) {
     case 'board/changeTask':
       return {
         ...state,
         boards: {
           ...state.boards,
-          [action.payload.boardId]: {
-            ...state.boards[action.payload.boardId],
-            taskIds: action.payload.tasks,
+          [payload.boardId]: {
+            ...state.boards[payload.boardId],
+            taskIds: payload.tasks,
           },
         },
       };
@@ -17,9 +19,9 @@ const stateReducer = (state, action) => {
         ...state,
         boards: {
           ...state.boards,
-          [action.payload.boardId]: {
-            ...state.boards[action.payload.boardId],
-            taskIds: action.payload.tasks,
+          [payload.boardId]: {
+            ...state.boards[payload.boardId],
+            taskIds: payload.tasks,
           },
         },
       };
@@ -29,9 +31,9 @@ const stateReducer = (state, action) => {
         ...state,
         boards: {
           ...state.boards,
-          [action.payload.boardId]: {
-            ...state.boards[action.payload.boardId],
-            taskIds: action.payload.tasks,
+          [payload.boardId]: {
+            ...state.boards[payload.boardId],
+            taskIds: payload.tasks,
           },
         },
       };
@@ -39,7 +41,38 @@ const stateReducer = (state, action) => {
     case 'board/changeBoard':
       return {
         ...state,
-        boardsOrder: [...action.payload],
+        boardsOrder: [...payload],
+      };
+
+    case 'task/addTask':
+      return {
+        ...state,
+        tasks: { ...state.tasks, [payload.task.id]: payload.task },
+        boards: {
+          ...state.boards,
+          [payload.boardId]: {
+            ...state.boards[payload.boardId],
+            taskIds: [
+              ...state.boards[payload.boardId].taskIds,
+              payload.task.id,
+            ],
+          },
+        },
+      };
+
+    case 'task/deleteTask':
+      delete state.tasks[payload.taskId];
+      return {
+        ...state,
+        boards: {
+          ...state.boards,
+          [payload.boardId]: {
+            ...state.boards[payload.boardId],
+            taskIds: state.boards[payload.boardId].taskIds.filter(
+              task => task !== payload.taskId
+            ),
+          },
+        },
       };
 
     default:
