@@ -1,8 +1,8 @@
 export const data = {
   tasks: {
-    'task-1': { id: 'task-1', content: 'first' },
-    'task-2': { id: 'task-2', content: 'second' },
-    'task-3': { id: 'task-3', content: 'threes' },
+    'task-1': { id: 'task-1', content: 'To fly into space' },
+    'task-2': { id: 'task-2', content: 'Visit Niagara Falls' },
+    'task-3': { id: 'task-3', content: "Get a pilot's license" },
   },
   boards: {
     'board-1': {

@@ -7,6 +7,10 @@ export const Form = styled.form`
   align-items: center;
   margin-top: auto;
   padding-left: 10px;
+
+  :hover ::placeholder {
+    color: #fff;
+  }
 `;
 
 export const Input = styled.input`
@@ -24,11 +28,10 @@ export const Input = styled.input`
   }
 
   ::placeholder {
-    color: transparent;
+    color: #ffffff44;
     transition: color 0.4s ease;
   }
 
-  :hover::placeholder,
   :focus::placeholder {
     color: #fff;
   }
