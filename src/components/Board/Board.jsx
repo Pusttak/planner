@@ -3,7 +3,7 @@ import Task from 'components/Task';
 import AddTaskForm from 'components/AddTaskForm';
 import { BoardContainer, Title, TaskList, Box } from './Board.styled';
 
-const Board = ({ board, tasks, index, isAddTask, isDeleteTask }) => {
+const Board = ({ board, tasks, index, isAddTask, ...rest }) => {
   return (
     <Draggable draggableId={board.id} index={index} isDragDisabled={true}>
       {provided => (
@@ -23,8 +23,8 @@ const Board = ({ board, tasks, index, isAddTask, isDeleteTask }) => {
                         key={task.id}
                         task={task}
                         index={index}
-                        isDeleteTask={isDeleteTask}
                         boardId={board.id}
+                        {...rest}
                       />
                     ))}
                     {provided.placeholder}

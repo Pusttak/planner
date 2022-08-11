@@ -75,6 +75,12 @@ const stateReducer = (state, action) => {
         },
       };
 
+    case 'task/editTask':
+      return {
+        ...state,
+        tasks: { ...state.tasks, [payload.newTask.id]: payload.newTask },
+      };
+
     default:
       return state;
   }

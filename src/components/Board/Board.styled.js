@@ -20,6 +20,9 @@ export const Title = styled.h3`
 `;
 
 export const TaskList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin-bottom: 20px;
   min-height: 45px;
   padding: 15px 10px;
