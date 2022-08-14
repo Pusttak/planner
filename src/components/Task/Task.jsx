@@ -1,7 +1,15 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { MdOutlineDeleteSweep } from 'react-icons/md';
-import { Item, Content, BoxItem, Form, Input, Button } from './Task.styled';
+import {
+  BoxItem,
+  Item,
+  Content,
+  NumberItem,
+  Form,
+  Input,
+  Button,
+} from './Task.styled';
 import IconButton from 'components/IconButton';
 
 const Task = ({
@@ -56,15 +64,15 @@ const Task = ({
           >
             {!isInput ? (
               <>
-                <Content>
-                  {index + 1}. {visibilityContent}
-                </Content>
+                <NumberItem>{index + 1}.</NumberItem>
+                <Content>{visibilityContent}</Content>
                 <IconButton onClick={() => isDeleteTask(boardId, task.id)}>
                   <MdOutlineDeleteSweep size="24" />
                 </IconButton>
               </>
             ) : (
               <Form onSubmit={handleSubmit}>
+                <NumberItem>{index + 1}.</NumberItem>
                 <Input
                   type="text"
                   value={content}

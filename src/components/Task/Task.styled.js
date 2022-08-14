@@ -14,8 +14,14 @@ export const Item = styled.div`
 
 export const Content = styled.h4`
   margin: 0;
-  padding: 12px;
+  padding: 4px;
   color: #fff;
+`;
+
+export const NumberItem = styled.span`
+  margin-left: 8px;
+  color: #ffbed7;
+  font-weight: 700;
 `;
 
 export const BoxItem = styled.li`
@@ -45,7 +51,7 @@ export const Input = styled.input`
   flex-grow: 1;
   font-size: 16px;
   font-family: Segoe UI;
-  padding: 12px;
+  padding: 12px 4px;
   font-weight: 700;
   color: #fff;
   background-color: transparent;
