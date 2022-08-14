@@ -3,6 +3,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import shortid from 'shortid';
 import stateReducer from 'reducers/stateReducer';
 import Board from 'components/Board';
+import Title from 'components/Title';
 import { data } from 'data';
 import { Container } from './App.styled';
 
@@ -103,32 +104,39 @@ const App = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="all-boards" direction="horisontal" type="border">
-        {provided => (
-          <Container {...provided.droppableProps} ref={provided.innerRef}>
-            {state.boardsOrder.map((boardId, index) => {
-              const board = state.boards[boardId];
-              const tasks = board.taskIds.map(taskId => state.tasks[taskId]);
-              return (
-                <Board
-                  key={board.id}
-                  board={board}
-                  tasks={tasks}
-                  index={index}
-                  isAddTask={isAddTask}
-                  isDeleteTask={isDeleteTask}
-                  isEditTask={isEditTask}
-                  isInputId={isInputId}
-                  setIsInputId={setIsInputId}
-                />
-              );
-            })}
-            {provided.placeholder}
-          </Container>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable
+          droppableId="all-boards"
+          direction="horisontal"
+          type="border"
+        >
+          {provided => (
+            <Container {...provided.droppableProps} ref={provided.innerRef}>
+              {state.boardsOrder.map((boardId, index) => {
+                const board = state.boards[boardId];
+                const tasks = board.taskIds.map(taskId => state.tasks[taskId]);
+                return (
+                  <Board
+                    key={board.id}
+                    board={board}
+                    tasks={tasks}
+                    index={index}
+                    isAddTask={isAddTask}
+                    isDeleteTask={isDeleteTask}
+                    isEditTask={isEditTask}
+                    isInputId={isInputId}
+                    setIsInputId={setIsInputId}
+                  />
+                );
+              })}
+              {provided.placeholder}
+            </Container>
+          )}
+        </Droppable>
+      </DragDropContext>
+      <Title />
+    </>
   );
 };
 

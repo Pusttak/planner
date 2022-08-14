@@ -20,7 +20,7 @@ export const Content = styled.h4`
 
 export const NumberItem = styled.span`
   margin-left: 8px;
-  color: #ffbed7;
+  color: #ffffff88;
   font-weight: 700;
 `;
 
