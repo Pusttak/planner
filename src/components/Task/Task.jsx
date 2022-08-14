@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { Item, Content, BoxItem, Form, Input, Button } from './Task.styled';
+import IconButton from 'components/IconButton';
 
 const Task = ({
   task,
@@ -37,7 +39,7 @@ const Task = ({
   };
 
   const visibilityContent = useMemo(() => {
-    return content.length >= 38 ? `${content.slice(0, 38)}...` : content;
+    return content.length >= 34 ? `${content.slice(0, 35)}...` : content;
   }, [content]);
 
   return (
@@ -53,7 +55,12 @@ const Task = ({
             onDoubleClick={handleInputIsOpen}
           >
             {!isInput ? (
-              <Content>{visibilityContent}</Content>
+              <>
+                <Content>{visibilityContent}</Content>
+                <IconButton onClick={() => isDeleteTask(boardId, task.id)}>
+                  <MdOutlineDeleteSweep size="24" />
+                </IconButton>
+              </>
             ) : (
               <Form onSubmit={handleSubmit}>
                 <Input

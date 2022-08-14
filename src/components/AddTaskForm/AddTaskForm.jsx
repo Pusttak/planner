@@ -5,7 +5,8 @@ const AddTaskForm = ({ board, isAddTask }) => {
     e.preventDefault();
     const form = e.target;
     if (form.content.value) {
-      isAddTask(board.id, e.target.content.value);
+      const trimContent = e.target.content.value.replace(/ {1,}/g, ' ').trim();
+      isAddTask(board.id, trimContent);
       form.reset();
     }
   };
