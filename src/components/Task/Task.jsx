@@ -39,7 +39,7 @@ const Task = ({
   };
 
   const visibilityContent = useMemo(() => {
-    return content.length >= 34 ? `${content.slice(0, 35)}...` : content;
+    return content.length >= 32 ? `${content.slice(0, 32)}...` : content;
   }, [content]);
 
   return (
@@ -56,7 +56,9 @@ const Task = ({
           >
             {!isInput ? (
               <>
-                <Content>{visibilityContent}</Content>
+                <Content>
+                  {index + 1}. {visibilityContent}
+                </Content>
                 <IconButton onClick={() => isDeleteTask(boardId, task.id)}>
                   <MdOutlineDeleteSweep size="24" />
                 </IconButton>

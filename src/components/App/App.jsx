@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import shortid from 'shortid';
 import stateReducer from 'reducers/stateReducer';
@@ -7,8 +7,19 @@ import { data } from 'data';
 import { Container } from './App.styled';
 
 const App = () => {
-  const [state, dispatch] = useReducer(stateReducer, data);
+  const [state, dispatch] = useReducer(stateReducer, data, () => {
+    const srotageState = localStorage.getItem('state');
+    if (srotageState) {
+      return JSON.parse(srotageState);
+    }
+    return data;
+  });
   const [isInputId, setIsInputId] = useState(null);
+
+  useEffect(() => {
+    const srotageState = JSON.stringify(state);
+    localStorage.setItem('state', srotageState);
+  }, [state]);
 
   const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
